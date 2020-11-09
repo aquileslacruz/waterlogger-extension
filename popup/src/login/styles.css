@@ -1,0 +1,11 @@
+#login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#login-page .login-form {
+    max-width: 300px;
+}
