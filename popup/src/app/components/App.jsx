@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import Loading from './Loading';
 import Login from '../../login/components/Login';
+import Register from '../../login/components/Register';
 import Home from '../../home/components/Home';
 import { PAGES } from '../constants';
 
@@ -21,6 +22,7 @@ const App = () => {
         <div id='app-container'>
             {page === PAGES.LOADING && <Loading />}
             {page === PAGES.LOGIN && <Login />}
+            {page === PAGES.REGISTER && <Register />}
             {page === PAGES.HOME && <Home />}
         </div>
     )

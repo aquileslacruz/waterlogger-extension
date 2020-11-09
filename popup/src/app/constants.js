@@ -1,6 +1,7 @@
 export const PAGES = {
     LOADING: 'PAGE_LOADING',
     LOGIN: 'PAGE_LOGIN',
+    REGISTER: 'PAGE_REGISTER',
     HOME: 'PAGE_HOME',
 };
 

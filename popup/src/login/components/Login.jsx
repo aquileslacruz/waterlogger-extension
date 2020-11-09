@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Form, Input, Button } from 'antd';
+import { Form, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 import { login } from '../actions';

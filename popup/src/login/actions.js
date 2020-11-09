@@ -33,6 +33,14 @@ export const reload = (token) => (dispatch) => (
         })
 );
 
+export const register = (username, password, first_name, last_name) => (dispatch) => (
+    axios.post(ROUTES.CREATE, {username, password, first_name, last_name})
+        .then(response => response.data)
+        .then(() => {
+            dispatch(login(username, password));
+        })
+);
+
 export const getUser = (token) => (dispatch) => (
     axios.get(ROUTES.ME, {headers: {'Authorization': `Bearer ${token}`}})
         .then(response => response.data)

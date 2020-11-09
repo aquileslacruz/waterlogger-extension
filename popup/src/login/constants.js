@@ -6,6 +6,7 @@ export const ACTIONS = {
 };
 
 export const ROUTES = {
+    CREATE: `${API_URL}/users/`,
     LOGIN: `${API_URL}/token/`,
     ME: `${API_URL}/users/me`,
-}
+};

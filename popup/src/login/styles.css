@@ -1,3 +1,4 @@
+/*-- LOGIN PAGE --*/
 #login-page {
     display: flex;
     flex-direction: column;
@@ -8,4 +9,29 @@
 
 #login-page .login-form {
     max-width: 300px;
+}
+
+#login-page .ant-form-item-control-input-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+/*-- REGISTER PAGE --*/
+#register-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#register-page .register-form {
+    max-width: 300px;
+}
+
+#register-page .ant-form-item-control-input-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }

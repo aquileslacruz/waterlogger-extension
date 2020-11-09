@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Form, Button } from 'antd';
 
+import { register } from '../actions';
 import { changePage } from '../../app/actions';
 import { InputField } from '../../app/components/Utils';
 import { PAGES } from '../../app/constants';
@@ -12,13 +14,13 @@ const RegisterContainer = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
-    const [confirm, setConfirm] = useState('');
+    const [confirmation, setConfirmation] = useState('');
 
     const handleUsername = e => setUsername(e.target.value);
     const handleFirstName = e => setFirstName(e.target.value);
     const handleLastName = e => setLastName(e.target.value);
     const handlePassword = e => setPassword(e.target.value);
-    const handleConfirm = e => setConfirm(e.target.value);
+    const handleConfirmation = e => setConfirmation(e.target.value);
 
     const onSubmit = () => {
         dispatch(register(username, password, firstName, lastName));
@@ -37,7 +39,7 @@ const RegisterContainer = () => {
         firstName: { value: firstName, onChange: handleFirstName },
         lastName: { value: lastName, onChange: handleLastName },
         password: { value: password, onChange: handlePassword },
-        confirm: { value: confirm, onChange: handleConfirm },
+        confirmation: { value: confirmation, onChange: handleConfirmation, matches: password === confirmation },
     }
 
     return (
@@ -57,7 +59,7 @@ const Register = ({ fields, onKeyPress, onLoginClick, onSubmit }) => (
             <FirstNameInput {...fields.firstName} onKeyPress={onKeyPress} />
             <LastNameInput {...fields.lastName} onKeyPress={onKeyPress} />
             <PasswordInput {...fields.password} onKeyPress={onKeyPress} />
-            <ConfirmInput {...fields.confirm} onKeyPress={onKeyPress} />
+            <ConfirmInput {...fields.confirmation} onKeyPress={onKeyPress} />
             <Form.Item>
                 <SubmitButton />
                 <LoginButton onClick={onLoginClick} />
@@ -134,5 +136,17 @@ const ConfirmInput = ({value, onChange, onKeyPress, matches}) => {
 
     return <InputField {...props} />
 };
+
+const SubmitButton = () => (
+    <Button type='primary' htmlType='submit'>
+        {'Submit'}
+    </Button>
+)
+
+const LoginButton = ({onClick}) => (
+    <Button type='default' onClick={onClick}>
+        {'Login'}
+    </Button>
+)
 
 export default RegisterContainer;
