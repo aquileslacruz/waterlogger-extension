@@ -4,6 +4,10 @@ import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 import { login } from '../actions';
+import { InputField } from '../../app/components/Utils';
+import { changePage } from '../../app/actions';
+import { PAGES } from '../../app/constants';
+
 import '../styles.css';
 
 const LoginContainer = () => {
@@ -28,6 +32,10 @@ const LoginContainer = () => {
         dispatch(login(username, password));
     }
 
+    const goToRegister = () => {
+        dispatch(changePage(PAGES.REGISTER));
+    }
+
     return (
         <Login
             username={{
@@ -40,59 +48,63 @@ const LoginContainer = () => {
             }}
             handleKeyPress={handleKeyPress}
             handleSubmit={submitForm}
+            register={goToRegister}
         />
     )
 }
 
-const Login = ({username, password, handleKeyPress, handleSubmit}) => (
+const Login = ({username, password, handleKeyPress, handleSubmit, register}) => (
     <div id={'login-page'}>
         <Form className='login-form' onFinish={handleSubmit}>
             <UsernameInput {...username} handleKeyPress={handleKeyPress} />
             <PasswordInput {...password} handleKeyPress={handleKeyPress} />
-            <SubmitButton submit={handleSubmit}/>
+            <Form.Item>
+                <SubmitButton submit={handleSubmit}/>
+                <RegisterButton register={register} />
+            </Form.Item>
         </Form>
     </div>
 )
 
 const UsernameInput = ({value, handler, handleKeyPress}) => {
-    const rules = [{required: true, message: 'Please input your username!'}];
     const props = {
+        name: 'username',
         type: 'text',
         value: value,
         placeholder: 'Username',
         onChange: handler,
         onKeyPress: handleKeyPress,
         prefix: <UserOutlined className='site-form-item-icon' />,
+        rules: [{required: true, message: 'Please input your username!'}],
     };
 
-    return (
-        <Form.Item name='username' rules={rules}>
-            <Input {...props} />
-        </Form.Item>
-    )
+    return <InputField {...props} />
 };
 
 const PasswordInput = ({value, handler, handleKeyPress}) => {
-    const rules = [{required: true, message: 'Please input your password!'}];
     const props = {
+        name: 'password',
         type: 'password',
         value: value,
         placeholder: 'Password',
         onChange: handler,
         onKeyPress: handleKeyPress,
         prefix: <LockOutlined className='site-form-item-icon' />,
+        rules: [{required: true, message: 'Please input your password!'}],
     };
 
-    return (
-        <Form.Item name='password' rules={rules}>
-            <Input {...props} />
-        </Form.Item>
-    )
+    return <InputField {...props} />
 };
 
 const SubmitButton = () => (
     <Button type='primary' htmlType='submit'>
         {'Login'}
+    </Button>
+)
+
+const RegisterButton = ({register}) => (
+    <Button type='default' onClick={register}>
+        {'Register'}
     </Button>
 )
 
