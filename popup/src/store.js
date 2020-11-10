@@ -4,10 +4,12 @@ import { createLogger } from 'redux-logger';
 
 import app from './app/reducer';
 import login from './login/reducer';
+import home from './home/reducer';
 
 const reducer = combineReducers({
     app,
-    login
+    login,
+    home,
 });
 
 const store = createStore(
