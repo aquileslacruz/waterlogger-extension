@@ -17,7 +17,7 @@ const set_user = (user) => ({
 
 // PUBLIC METHODS
 export const login = (username, password) => (dispatch) => (
-    axios.post(ROUTES.LOGIN, {username, password})
+    axios.post(ROUTES.LOGIN, {}, {auth: {username, password}})
         .then(response => response.data)
         .then(data => {
             dispatch(set_token(data.access_token));
