@@ -1,0 +1,5 @@
+export const SECTIONS = {
+    MAIN: 'SECTION_MAIN',
+    SEARCH: 'SECTION_SEARCH',
+    FRIENDS: 'SECTION_FRIENDS'
+};
