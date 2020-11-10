@@ -34,12 +34,18 @@ const RegisterContainer = () => {
         if (e.which === 13) onSubmit();
     }
 
+    const validatePassword = (_, value) => (
+        value !== '' && value === password ?
+            Promise.resolve() :
+            Promise.reject('Password must match!')
+    )
+
     const inputFields = {
         username: { value: username, onChange: handleUsername },
         firstName: { value: firstName, onChange: handleFirstName },
         lastName: { value: lastName, onChange: handleLastName },
         password: { value: password, onChange: handlePassword },
-        confirmation: { value: confirmation, onChange: handleConfirmation, matches: password === confirmation },
+        confirmation: { value: confirmation, onChange: handleConfirmation, validator: validatePassword},
     }
 
     return (
@@ -122,7 +128,7 @@ const PasswordInput = ({value, onChange, onKeyPress}) => {
     return <InputField {...props} />
 };
 
-const ConfirmInput = ({value, onChange, onKeyPress, matches}) => {
+const ConfirmInput = ({value, onChange, onKeyPress, validator}) => {
     const props = {
         value,
         onChange,
@@ -130,8 +136,10 @@ const ConfirmInput = ({value, onChange, onKeyPress, matches}) => {
         type: 'password',
         name: 'confirm',
         placeholder: 'Re-type Password',
-        rules: [{required: true, message: 'You must confirm the password!'}],
-        help: !matches && 'Password doesn\'t match!'
+        rules: [
+            {required: true, message: 'You must confirm the password!'},
+            {validator},
+        ],
     }
 
     return <InputField {...props} />
