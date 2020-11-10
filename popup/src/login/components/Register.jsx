@@ -35,7 +35,7 @@ const RegisterContainer = () => {
     }
 
     const validatePassword = (_, value) => (
-        value !== '' && value === password ?
+        value === '' || value === password ?
             Promise.resolve() :
             Promise.reject('Password must match!')
     )

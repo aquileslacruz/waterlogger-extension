@@ -1,0 +1,16 @@
+#home-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+#home-page .footer {
+    position: absolute;
+    align-self: flex-end;
+    bottom: 24px;
+    right: 24px;
+}

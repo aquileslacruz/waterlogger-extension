@@ -25,6 +25,14 @@ export const login = (username, password) => (dispatch) => (
         })
 );
 
+export const logout = () => (dispatch) => {
+    dispatch(set_token(null));
+    dispatch(set_user(null));
+    dispatch(changePage(PAGES.LOGIN));
+
+    return;
+};
+
 export const reload = (token) => (dispatch) => (
     axios.get(ROUTES.LOGIN, {headers: {'Authorization': `Bearer ${token}`}})
         .then(response => response.data)
