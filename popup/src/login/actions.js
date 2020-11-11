@@ -53,7 +53,7 @@ export const getUser = (token) => (dispatch) => (
         .then(response => response.data)
         .then(data => {
             dispatch(set_user(data));
-            dispatch(changePage(PAGES.HOME));
+            dispatch(changePage(PAGES.MAIN));
         })
         .catch(error => dispatch(handleUnauthorized(error)))
 );

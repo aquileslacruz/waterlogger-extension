@@ -4,7 +4,7 @@ import { Alert } from 'antd';
 
 import Login from '../../login/components/Login';
 import Register from '../../login/components/Register';
-import Home from '../../home/components/Home';
+import Main from '../../main/components/Main';
 import { PAGES } from '../constants';
 import { setAppMessage } from '../actions';
 
@@ -35,7 +35,7 @@ const App = () => {
             {message && <Message alert={message} onClose={onCloseMessage} />}
             {page === PAGES.LOGIN && <Login />}
             {page === PAGES.REGISTER && <Register />}
-            {page === PAGES.HOME && <Home />}
+            {page === PAGES.MAIN && <Main />}
         </div>
     )
 }

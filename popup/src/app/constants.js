@@ -1,7 +1,7 @@
 export const PAGES = {
     LOGIN: 'PAGE_LOGIN',
     REGISTER: 'PAGE_REGISTER',
-    HOME: 'PAGE_HOME',
+    MAIN: 'PAGE_MAIN',
 };
 
 export const ACTIONS = {

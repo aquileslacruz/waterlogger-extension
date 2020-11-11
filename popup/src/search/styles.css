@@ -1,0 +1,22 @@
+#search-section {
+    justify-content: flex-start;
+}
+
+#search-section .search-bar {
+    position: relative;
+    margin: 12px 0;
+}
+
+#search-section .search-bar .results {
+    position: absolute;
+    width: 100%;
+}
+
+#search-section .search-bar .results .item {
+    padding: 6px 12px;
+    margin-right: 1px;
+    border: 1px solid lightgrey;
+    border-top: none;
+    cursor: pointer;
+    background-color: white;
+}

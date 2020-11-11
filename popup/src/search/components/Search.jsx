@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Input } from 'antd';
 import _ from 'lodash';
 
+import { SearchBar, SearchResults } from '.';
 import { searchUsers, searchBarUsers, clearSearchBar } from "../actions";
 
-const { Search } = Input;
+import '../styles.css';
 
 const SearchContainer = () => {
     const dispatch = useDispatch();
 
-    const results = useSelector(state => state.home.searchResults);
-    const barResults = useSelector(state => state.home.searchBarResults);
+    const results = useSelector(state => state.search.results);
+    const barResults = useSelector(state => state.search.barResults);
     const token = useSelector(state => state.login.token);
 
     const onSearch = (str) => {
@@ -30,34 +30,11 @@ const SearchContainer = () => {
     };
 
     return (
-        <div className='section search-section'>
+        <div id='search-section' className='section'>
             <SearchBar results={barResults} onSearch={onSearch} onChange={onQueryChange} />
-            <ResultsContainer results={results} />
+            <SearchResults results={results} />
         </div>
     )
 };
-
-const SearchBar = ({results, onSearch, onChange}) => (
-    <div className='search-bar'>
-        <Search placeholder="Enter username" onChange={onChange} onSearch={onSearch} />
-        { results.length > 0 && <SearchBarResults results={results} />}
-    </div>
-);
-
-const SearchBarResults = ({results}) => (
-    <div className='results'>
-        { results.map(e => <div className='item' key={e.id}>{e.username}</div>)}
-    </div>
-);
-
-const ResultsContainer = ({results}) => (
-    <div className='results-list'>
-        { results.map(e => <ResultItem {...e} />) }
-    </div>
-);
-
-const ResultItem = ({id, username}) => (
-    <div>{`${id} ${username}`}</div>
-);
 
 export default SearchContainer;
