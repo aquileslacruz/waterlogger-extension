@@ -66,7 +66,7 @@ const Header = ({section, changeSection, notifications}) => (
 
 const Footer = ({onLogout}) => (
     <div className='footer'>
-        <Button type='default' onClick={onLogout} ghost={true}>
+        <Button type='link' onClick={onLogout}>
             {'Logout'}
         </Button>
     </div>

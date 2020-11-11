@@ -4,7 +4,14 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    width:100%;
+    width: 100%;
     max-width: 600px;
     background-color: white;
+    position: relative;
+}
+
+#app-container .ant-alert {
+    position: absolute;
+    top: 24px;
+    z-index: 1000;
 }

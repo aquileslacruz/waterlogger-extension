@@ -1,5 +1,4 @@
 export const PAGES = {
-    LOADING: 'PAGE_LOADING',
     LOGIN: 'PAGE_LOGIN',
     REGISTER: 'PAGE_REGISTER',
     HOME: 'PAGE_HOME',
@@ -7,7 +6,7 @@ export const PAGES = {
 
 export const ACTIONS = {
     SET_PAGE: 'APP_SET_PAGE',
-    SET_LOADING: 'APP_SET_LOADING',
+    SET_MESSAGE: 'APP_SET_MESSAGE',
 };
 
 export const API_URL = 'http://127.0.0.1:8000';

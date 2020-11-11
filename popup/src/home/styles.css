@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 100%;
+    width: inherit;
     position: relative;
     padding-top: 60px;
     padding-bottom: 48px;
@@ -14,7 +14,8 @@
 /*-- FOOTER --*/
 #home-page .footer {
     position: fixed;
-    width: 100%;
+    width: inherit;
+    max-width: 600px;
     bottom: 0;
     height: 48px;
     display: flex;
@@ -22,7 +23,7 @@
     align-items: center;
     justify-content: flex-end;
     padding: 0 12px;
-    background-color: #1890ff;
+    background-color: white;
 }
 
 /*-- HEADER --*/
@@ -32,7 +33,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
+    width: inherit;
+    max-width: 600px;
     height: 60px;
     background-color: white;
 }
@@ -53,6 +55,7 @@
 
 #home-page .header .section-header .anticon {
     font-size: 20px;
+    color: #1890ff;
 }
 
 #home-page .header .section-header.selected .anticon {
@@ -83,9 +86,75 @@
     width: 80%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 12px 24px;
     background-color: #e6f7ff;
     border: 1px solid #1890ff;
     border-radius: 6px;
     margin: 6px 0;
+    position: relative;
+}
+
+#home-page .section .notification-list .notification .info {
+    display: flex;
+    flex-direction: column;
+}
+
+#home-page .section .notification-list .notification .btn-remove {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 12px;
+    border-radius: 50%;
+    background-color: #ff4d4f;
+    color: white;
+    border: 1px solid white;
+    padding: 0 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#home-page .section .notification-list .notification .user {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#home-page .section .notification-list .notification .time {
+    font-size: 18px;
+    color: #1890ff;
+}
+
+#home-page .section .no-data {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 24px;
+}
+
+#home-page .search-section {
+    justify-content: flex-start;
+}
+
+#home-page .section .search-bar {
+    position: relative;
+    margin: 12px 0;
+}
+
+#home-page .section .search-bar .results {
+    position: absolute;
+    width: 100%;
+}
+
+#home-page .section .search-bar .results .item {
+    padding: 6px 12px;
+    margin-right: 1px;
+    border: 1px solid lightgrey;
+    border-top: none;
+    cursor: pointer;
+    background-color: white;
 }

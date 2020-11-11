@@ -9,10 +9,13 @@ export const SECTIONS = {
 
 export const ACTIONS = {
     SET_NOTIFICATIONS: 'HME_SET_NOTIFICATIONS',
-    ADD_NOTIFICATIONS: 'HME_ADD_NOTIFICATIONS',
+    DEL_NOTIFICATION: 'HME_DEL_NOTIFICATION',
+    SET_SEARCH_RESULTS: 'HME_SET_SEARCH_RESULTS',
+    SET_SEARCHBAR_RESULTS: 'HME_SET_SEARCHBAR_RESULTS',
 };
 
 export const ROUTES = {
-    GET_NOTIFICATIONS: `${API_URL}/drinks/notifications`,
-    CLEAR_NOTIFICATIONS: `${API_URL}/drinks/notifications/remove`
+    GET_NOTIFICATIONS: `${API_URL}/notifications/`,
+    DEL_NOTIFICATION: (id) => `${API_URL}/notifications/${id}/`,
+    SEARCH_USERS: `${API_URL}/users/search`
 };

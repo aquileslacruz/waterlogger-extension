@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { ACTIONS, ROUTES } from './constants';
 import { PAGES } from '../app/constants';
-import { changePage } from '../app/actions';
+import { changePage, setAppMessage } from '../app/actions';
 
 // ACTIONS
 const set_token = (token) => ({
@@ -21,7 +21,7 @@ export const login = (username, password) => (dispatch) => (
         .then(response => response.data)
         .then(data => {
             dispatch(set_token(data.access_token));
-            dispatch(getUser(data.access_token));
+            return dispatch(getUser(data.access_token));
         })
 );
 
@@ -36,9 +36,8 @@ export const logout = () => (dispatch) => {
 export const reload = (token) => (dispatch) => (
     axios.get(ROUTES.LOGIN, {headers: {'Authorization': `Bearer ${token}`}})
         .then(response => response.data)
-        .then(data => {
-            dispatch(set_token(data.access_token));
-        })
+        .then(data => dispatch(set_token(data.access_token)))
+        .catch(error => dispatch(handleUnauthorized(error)))
 );
 
 export const register = (username, password, first_name, last_name) => (dispatch) => (
@@ -56,4 +55,14 @@ export const getUser = (token) => (dispatch) => (
             dispatch(set_user(data));
             dispatch(changePage(PAGES.HOME));
         })
+        .catch(error => dispatch(handleUnauthorized(error)))
 );
+
+export const handleUnauthorized = (error) => (dispatch) => {
+    if (error.response) {
+        if (error.response.status === 401) {
+            dispatch(setAppMessage({message: 'You were logged out', type: 'error'}));
+            dispatch(logout());
+        }
+    }
+}

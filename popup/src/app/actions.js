@@ -11,6 +11,11 @@ const set_loading = (loading) => ({
     value: loading
 });
 
+const set_message = (message) => ({
+    type: ACTIONS.SET_MESSAGE,
+    value: message
+});
+
 // PUBLIC METHODS
 export const changePage = (page) => (dispatch) => (
     dispatch(set_page(page))
@@ -18,4 +23,8 @@ export const changePage = (page) => (dispatch) => (
 
 export const changeLoading = (loading) => (dispatch) => (
     dispatch(set_loading(loading))
+);
+
+export const setAppMessage = (msg) => (dispatch) => (
+    dispatch(set_message(msg))
 );
