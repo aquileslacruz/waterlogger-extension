@@ -29,4 +29,6 @@ export const searchBarUsers = (token, query) => (dispatch) => (
         .catch(error => dispatch(handleUnauthorized(error)))
 );
 
+export const clearSearchResults = () => (dispatch) => dispatch(set_search_results([]));
+
 export const clearSearchBar = () => (dispatch) => dispatch(set_searchbar_results([]));

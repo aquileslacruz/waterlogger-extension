@@ -3,7 +3,7 @@ import { ACTIONS } from './constants';
 const initialState = {
     token: null,
     user: null,
-}
+};
 
 const handler = (state=initialState, action) => {
     switch(action.type) {

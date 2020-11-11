@@ -1,10 +1,20 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { removeNotification } from '../actions';
 import { formatDate } from '../utilities';
 
-const NotificationList = ({notifications, onRemove}) => (
-    <div className='notification-list'>
-        { notifications.map(elem => <Notification {...elem} onRemove={onRemove} />) }
-    </div>
-)
+
+const NotificationList = ({notifications}) => {
+    const dispatch = useDispatch();
+    const token = useSelector(state => state.login.token);
+
+    const onRemove = (id) => dispatch(removeNotification(token, id));
+    
+    return (
+        <div className='notification-list'>
+            { notifications.map(elem => <Notification {...elem} onRemove={onRemove} />) }
+        </div>
+    )
+};
 
 const Notification = ({id, user, glasses, datetime, onRemove}) => (
     <div className='notification'>

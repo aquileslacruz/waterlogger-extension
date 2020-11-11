@@ -18,7 +18,7 @@ import '../styles.css';
 const Main = () => {
     const dispatch = useDispatch();
 
-    const [section, setSection] = useState(SECTIONS.MAIN);
+    const [section, setSection] = useState(SECTIONS.HOME);
     const [showLogoutModal, setShowLogoutModal] = useState(false);
 
     const token = useSelector(state => state.login.token);
