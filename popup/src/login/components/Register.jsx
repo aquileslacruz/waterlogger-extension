@@ -7,6 +7,9 @@ import { changePage } from '../../app/actions';
 import { InputField } from '../../app/components/Utils';
 import { PAGES } from '../../app/constants';
 
+import '../styles.scss';
+
+
 const RegisterContainer = () => {
     const dispatch = useDispatch();
 

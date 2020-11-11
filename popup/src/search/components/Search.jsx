@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { SearchBar, SearchResults } from '.';
 import { clearSearchResults } from "../actions";
 
-import '../styles.css';
+import '../styles.scss';
 
 const SearchContainer = () => {
     const dispatch = useDispatch();

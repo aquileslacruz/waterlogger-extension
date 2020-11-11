@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { NotificationList, NoData } from '.';
 
-import '../styles.css';
+import '../styles.scss';
 
 const Notifications = () => {
     const notifications = useSelector(state => state.notifications.notifications);

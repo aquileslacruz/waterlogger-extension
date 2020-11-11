@@ -8,10 +8,10 @@
     max-width: 600px;
     background-color: white;
     position: relative;
-}
 
-#app-container .ant-alert {
-    position: absolute;
-    top: 24px;
-    z-index: 1000;
+    .ant-alert {
+        position: absolute;
+        top: 24px;
+        z-index: 1000;
+    }
 }

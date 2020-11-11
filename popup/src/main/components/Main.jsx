@@ -13,7 +13,7 @@ import { Notifications } from '../../notifications/components';
 import { logout, reload } from '../../login/actions';
 import { getNotifications } from '../../notifications/actions';
 
-import '../styles.css';
+import '../styles.scss';
 
 const Main = () => {
     const dispatch = useDispatch();

@@ -2,14 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { Alert } from 'antd';
 
-import Login from '../../login/components/Login';
-import Register from '../../login/components/Register';
+import { Login, Register } from '../../login/components/';
 import Main from '../../main/components/Main';
 import { PAGES } from '../constants';
 import { setAppMessage } from '../actions';
 
 import "antd/dist/antd.css";
-import '../styles.css';
+import '../styles.scss';
 
 
 const App = () => {

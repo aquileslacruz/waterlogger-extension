@@ -8,7 +8,7 @@ import { InputField } from '../../app/components/Utils';
 import { changePage } from '../../app/actions';
 import { PAGES } from '../../app/constants';
 
-import '../styles.css';
+import '../styles.scss';
 
 const LoginContainer = () => {
     const [username, setUsername] = useState('');
