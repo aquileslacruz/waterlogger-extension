@@ -5,7 +5,14 @@ import { useSelector } from "react-redux";
 
 import "./Styles.scss";
 
-const Search = ({ onQueryChange, onSearch, onClearBar }) => {
+const Search = ({
+	onQueryChange,
+	onSearch,
+	onClearBar,
+	onClickBarResult,
+	onFollow,
+	onUnfollow,
+}) => {
 	const results = useSelector((state) => state.search.results);
 	const barResults = useSelector((state) => state.search.barResults);
 
@@ -16,12 +23,12 @@ const Search = ({ onQueryChange, onSearch, onClearBar }) => {
 					placeholder='Enter username'
 					onChange={onQueryChange}
 					onSearch={onSearch}
-					onBlur={onClearBar}
+					onBlur={() => _.delay(onClearBar, 300)}
 				/>
 				{barResults.length > 0 && (
 					<div className='results'>
 						{barResults.map((e) => (
-							<BarResultItem {...e} />
+							<BarResultItem {...e} onClick={onClickBarResult} />
 						))}
 					</div>
 				)}
@@ -35,32 +42,41 @@ const Search = ({ onQueryChange, onSearch, onClearBar }) => {
 	);
 };
 
-const BarResultItem = ({ id, username }) => (
-	<div className='item' key={id}>
+const BarResultItem = ({ id, username, onClick }) => (
+	<div className='item' key={id} onClick={() => onClick(id)}>
 		{username}
 	</div>
 );
 
-const ResultItem = ({ id, username, image = "/profile.png" }) => (
+const ResultItem = ({
+	id,
+	username,
+	image = "/profile.png",
+	onFollow,
+	onUnfollow,
+}) => (
 	<div className='item'>
 		<img src={image} className='image' />
 		<span>{username}</span>
 		<div className='right'>
-			<FollowButton id={id} />
+			<FollowButton {...{ id, onFollow, onUnfollow }} />
 		</div>
 	</div>
 );
 
-const FollowButton = ({ id }) => {
+const FollowButton = ({ id, onFollow, onUnfollow }) => {
 	const user = useSelector((state) => state.app.user);
 	const following = _.get(user, "following", [])
 		.map((e) => e.id)
 		.includes(id);
 
 	return following ? (
-		<MinusCircleOutlined className='remove-icon' />
+		<MinusCircleOutlined
+			className='remove-icon'
+			onClick={() => onUnfollow(id)}
+		/>
 	) : (
-		<PlusCircleOutlined className='add-icon' />
+		<PlusCircleOutlined className='add-icon' onClick={() => onFollow(id)} />
 	);
 };
 

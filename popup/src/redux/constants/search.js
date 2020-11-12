@@ -7,4 +7,5 @@ export const ACTIONS = {
 
 export const ROUTES = {
 	SEARCH_USERS: `${API_URL}/users/search`,
+	GET_USER: (id) => `${API_URL}/users/${id}`,
 };
