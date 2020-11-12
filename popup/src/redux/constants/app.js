@@ -11,6 +11,7 @@ export const ACTIONS = {
     SET_USER: 'APP_SET_USER',
     SET_PAGE: 'APP_SET_PAGE',
     SET_MESSAGE: 'APP_SET_MESSAGE',
+    CLEAR: 'APP_CLEAR',
 };
 
 export const API_URL = 'http://127.0.0.1:8000';

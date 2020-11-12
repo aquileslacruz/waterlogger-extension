@@ -13,6 +13,10 @@ const set_searchbar_results = (results) => ({
 	value: results,
 });
 
+const clear = () => ({
+	type: ACTIONS.CLEAR,
+});
+
 export const searchUsers = (token, query, skip = 0, limit = 10) => (dispatch) =>
 	axios
 		.get(ROUTES.SEARCH_USERS, {
@@ -47,3 +51,5 @@ export const clearSearchResults = () => (dispatch) =>
 
 export const clearSearchBar = () => (dispatch) =>
 	dispatch(set_searchbar_results([]));
+
+export const clearSearch = () => (dispatch) => dispatch(clear());

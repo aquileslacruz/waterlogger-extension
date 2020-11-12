@@ -2,6 +2,7 @@ import _ from "lodash";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Search } from ".";
+import { followUser, unfollowUser } from "../../../redux/actions/following";
 import {
 	searchUsers,
 	searchBarUsers,
@@ -36,8 +37,8 @@ const Container = () => {
 		clearSearchBarResults();
 	};
 
-	const onFollow = (id) => {};
-	const onUnfollow = (id) => {};
+	const onFollow = (id) => dispatch(followUser(token, id));
+	const onUnfollow = (id) => dispatch(unfollowUser(token, id));
 
 	useEffect(() => {
 		return () => dispatch(clearSearchResults());

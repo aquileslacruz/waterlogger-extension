@@ -15,6 +15,8 @@ const handler = (state = initialState, action) => {
 					(e) => e.id !== action.value
 				),
 			};
+		case ACTIONS.CLEAR:
+			return initialState;
 		default:
 			return { ...state };
 	}
