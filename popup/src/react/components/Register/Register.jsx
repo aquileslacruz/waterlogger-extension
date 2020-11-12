@@ -1,5 +1,5 @@
 import { Form, Button } from "antd";
-import { InputField } from "../Utils";
+import { InputField } from "..";
 
 const Register = ({ fields, onLoginClick, onSubmit }) => (
 	<div id={"register-page"}>

@@ -8,7 +8,7 @@ const Notifications = ({ onRemove }) => {
 	);
 
 	return (
-		<div id='notification-section' className='section'>
+		<div id='notification-page'>
 			{notifications.length > 0 && (
 				<div className='notification-list'>
 					{notifications.map((elem) => (

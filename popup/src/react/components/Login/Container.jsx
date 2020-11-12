@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
-import { login } from "../actions";
-import { changePage } from "../../app/actions";
-import { PAGES } from "../../app/constants";
+import { changePage, login } from "../../../redux/actions/app";
+import { PAGES } from "../../../redux/constants/app";
+import { Login } from ".";
 
 import "./Styles.scss";
 

@@ -1,0 +1,50 @@
+@use "./variables.scss" as *;
+
+#AppFooter {
+	position: fixed;
+	width: 100%;
+	max-width: 600px;
+	bottom: 0;
+	height: $footer-size;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 0 12px;
+	background-color: white;
+}
+
+#AppHeader {
+	position: fixed;
+	top: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	max-width: 600px;
+	height: $header-size;
+	background-color: white;
+
+	.section-header {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 25%;
+		height: 100%;
+		cursor: pointer;
+
+		.anticon {
+			font-size: 20px;
+			color: $base-color;
+		}
+
+		&.selected {
+			background-color: $base-color;
+
+			.anticon {
+				color: white;
+			}
+		}
+	}
+}

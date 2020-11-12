@@ -1,7 +1,7 @@
 import { Form, Button } from "antd";
-import { InputField } from "../Utils";
+import { InputField } from "..";
 
-import "./styles.scss";
+import "./Styles.scss";
 
 const Login = ({ fields, onSubmit, onRegisterClick }) => (
 	<div id={"login-page"}>

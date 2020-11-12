@@ -1,0 +1,13 @@
+@use "../../variables.scss" as *;
+
+#search-page {
+	display: block;
+	position: absolute;
+	top: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 600px;
+	background-color: white;
+	margin-top: $header-size;
+    margin-bottom: $footer-size;
+}

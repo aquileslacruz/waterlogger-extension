@@ -1,67 +1,77 @@
-@import '../../variables.scss';
+@use "../../variables.scss" as *;
 
-#notification-section {
-    .notification-list {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding-top: 24px;
+#notification-page {
+	display: block;
+	position: absolute;
+	top: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 600px;
+	background-color: white;
+	margin-top: $header-size;
+	margin-bottom: $footer-size;
 
-        .notification {
-            width: 80%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 24px;
-            background-color: #e6f7ff;
-            border: 1px solid $base-color;
-            border-radius: 6px;
-            margin: 6px 0;
-            position: relative;
+	.notification-list {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		padding-top: 24px;
 
-            .info {
-                display: flex;
-                flex-direction: column;
-            }
+		.notification {
+			width: 80%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 12px 24px;
+			background-color: #e6f7ff;
+			border: 1px solid $base-color;
+			border-radius: 6px;
+			margin: 6px 0;
+			position: relative;
 
-            .btn-remove {
-                position: absolute;
-                top: -8px;
-                right: -8px;
-                font-size: 12px;
-                border-radius: 50%;
-                background-color: $danger-color;
-                color: white;
-                border: 1px solid white;
-                padding: 0 6px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-            }
+			.info {
+				display: flex;
+				flex-direction: column;
+			}
 
-            .user {
-                font-size: 18px;
-                font-weight: bold;
-            }
+			.btn-remove {
+				position: absolute;
+				top: -8px;
+				right: -8px;
+				font-size: 12px;
+				border-radius: 50%;
+				background-color: $danger-color;
+				color: white;
+				border: 1px solid white;
+				padding: 0 6px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				cursor: pointer;
+			}
 
-            .time {
-                font-size: 12px;
-                color: #1890ff;
-            }
-        }
-    }
+			.user {
+				font-size: 18px;
+				font-weight: bold;
+			}
 
-    .no-data {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-        padding-top: 24px;
-    }
+			.time {
+				font-size: 12px;
+				color: #1890ff;
+			}
+		}
+	}
+
+	.no-data {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		padding-top: 24px;
+	}
 }

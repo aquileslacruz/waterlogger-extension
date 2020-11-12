@@ -1,10 +1,14 @@
+import _ from "lodash";
+import { Input } from "antd";
+import { PlusCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
+
 import "./Styles.scss";
 
 const Search = ({ onQueryChange, onSearch, onClearBar }) => {
-	const results = useSelector(state.search.results);
-	const barResults = useSelector(state.search.barResults);
-	
+	const results = useSelector((state) => state.search.results);
+	const barResults = useSelector((state) => state.search.barResults);
+
 	return (
 		<div id='search-page'>
 			<div className='search-bar'>
@@ -48,7 +52,7 @@ const ResultItem = ({ id, username, image = "/profile.png" }) => (
 );
 
 const FollowButton = ({ id }) => {
-	const user = useSelector((state) => state.login.user);
+	const user = useSelector((state) => state.app.user);
 	const following = _.get(user, "following", [])
 		.map((e) => e.id)
 		.includes(id);

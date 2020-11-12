@@ -1,9 +1,20 @@
 import { useSelector } from "react-redux";
-import { Login, Register, Home, Search, Notifications } from "./components";
 import { PAGES } from "../redux/constants/app";
+import {
+	Login,
+	Register,
+	Home,
+	Search,
+	Notifications,
+	Header,
+	Footer,
+} from "./components";
 
-const Main = () => {
-	const page = useSelector(state.app.page);
+import "antd/dist/antd.css";
+import "./App.scss";
+
+const App = () => {
+	const page = useSelector((state) => state.app.page);
 	const showHeader = ![PAGES.LOGIN, PAGES.REGISTER].includes(page);
 
 	return (
@@ -22,3 +33,5 @@ const Main = () => {
 		</>
 	);
 };
+
+export default App;

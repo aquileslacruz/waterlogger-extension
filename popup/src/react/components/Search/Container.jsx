@@ -12,7 +12,7 @@ import {
 const Container = () => {
 	const dispatch = useDispatch();
 
-	const token = useSelector((state) => state.login.token);
+	const token = useSelector((state) => state.app.token);
 
 	const onSearch = (str) => {
 		dispatch(searchUsers(token, str));

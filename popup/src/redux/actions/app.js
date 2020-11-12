@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ACTIONS, ROUTES, PAGES } from '../constants/app';
 
 // ACTIONS

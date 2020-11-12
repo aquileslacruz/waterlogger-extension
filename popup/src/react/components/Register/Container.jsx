@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { register } from "../actions";
-import { changePage } from "../../app/actions";
-import { PAGES } from "../../app/constants";
+import { register, changePage } from "../../../redux/actions/app";
+import { PAGES } from "../../../redux/constants/app";
 import { Register } from ".";
 
 import "./Styles.scss";
