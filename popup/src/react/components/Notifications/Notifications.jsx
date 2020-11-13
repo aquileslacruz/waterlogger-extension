@@ -27,7 +27,7 @@ const Notifications = ({ onRemove }) => {
 };
 
 const Notification = ({ id, user, glasses, datetime, onRemove }) => (
-	<div className='notification'>
+	<div className='notification' key={id}>
 		<div className='info'>
 			<div className='user'>{user}</div>
 			<div className='message'>{`Drank ${glasses} glasses of water`}</div>

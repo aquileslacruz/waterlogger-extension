@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { Alert } from "antd";
 import { PAGES } from "../redux/constants/app";
 import { getUserInfo } from "../redux/actions/app";
@@ -24,10 +25,10 @@ const App = () => {
 	const message = useSelector((state) => state.app.message);
 	const showHeader = ![PAGES.LOGIN, PAGES.REGISTER].includes(page);
 
-	const getInfo = () => token && dispatch(getUserInfo(token));
+	const getInfo = () => token !== null && dispatch(getUserInfo(token));
 
 	useEffect(() => {
-		const timer = setInterval(getInfo, 60*1000);
+		const timer = setInterval(getInfo, 60 * 1000);
 		return () => clearInterval(timer);
 	}, []);
 
@@ -45,13 +46,13 @@ const App = () => {
 					<Footer />
 				</>
 			)}
-			{ message &&
+			{message && (
 				<Alert
 					className='GlobalAlert'
 					type={message.type}
 					message={message.message}
 				/>
-			}
+			)}
 		</>
 	);
 };

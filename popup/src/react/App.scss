@@ -12,6 +12,7 @@
 	justify-content: flex-end;
 	padding: 0 12px;
 	background-color: white;
+	z-index: 9;
 }
 
 #AppHeader {
@@ -24,6 +25,7 @@
 	max-width: 600px;
 	height: $header-size;
 	background-color: white;
+	z-index: 9;
 
 	.section-header {
 		display: flex;
@@ -52,4 +54,5 @@
 .GlobalAlert {
 	position: absolute;
 	top: 72px;
+	z-index: 10;
 }
