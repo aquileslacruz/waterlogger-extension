@@ -1,6 +1,7 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Alert } from "antd";
 import { PAGES } from "../redux/constants/app";
+import { getUserInfo } from "../redux/actions/app";
 import {
 	Login,
 	Register,
@@ -16,9 +17,19 @@ import "antd/dist/antd.css";
 import "./App.scss";
 
 const App = () => {
+	const dispatch = useDispatch();
+
 	const page = useSelector((state) => state.app.page);
+	const token = useSelector((state) => state.app.token);
 	const message = useSelector((state) => state.app.message);
 	const showHeader = ![PAGES.LOGIN, PAGES.REGISTER].includes(page);
+
+	const getInfo = () => token && dispatch(getUserInfo(token));
+
+	useEffect(() => {
+		const timer = setInterval(getInfo, 60*1000);
+		return () => clearInterval(timer);
+	}, []);
 
 	return (
 		<>

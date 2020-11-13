@@ -2,7 +2,7 @@ import axios from "axios";
 import { ACTIONS, ROUTES, PAGES } from "../constants/app";
 import { getFollowing, getFollowers, clearFollowing } from "./following";
 import { clearSearch } from "./search";
-import { clearNotifications } from "./notifications";
+import { clearNotifications, getNotifications } from "./notifications";
 
 // ACTIONS
 const set_token = (token) => ({
@@ -74,6 +74,12 @@ export const getUser = (token) => (dispatch) =>
 			dispatch(changePage(PAGES.HOME));
 		})
 		.catch((error) => dispatch(handleUnauthorized(error)));
+
+export const getUserInfo = (token) => (dispatch) => {
+	dispatch(getFollowers(token));
+	dispatch(getFollowing(token));
+	dispatch(getNotifications(token));
+};
 
 export const handleUnauthorized = (error) => (dispatch) => {
 	if (error.response) {
