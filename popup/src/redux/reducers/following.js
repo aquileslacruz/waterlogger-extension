@@ -11,6 +11,8 @@ const handler = (state = initialState, action) => {
 			return { ...state, following: action.value };
 		case ACTIONS.SET_FOLLOWERS:
 			return { ...state, followers: action.value };
+		case ACTIONS.LOAD_STORED_DATA:
+			return { ...state, ...action.data.following };
 		case ACTIONS.CLEAR:
 			return initialState;
 		default:

@@ -11,6 +11,8 @@ const handler = (state = initialState, action) => {
 			return { ...state, results: action.value };
 		case ACTIONS.SET_SEARCHBAR_RESULTS:
 			return { ...state, barResults: action.value };
+		case ACTIONS.LOAD_STORED_DATA:
+			return { ...state, ...action.data.search };
 		case ACTIONS.CLEAR:
 			return initialState;
 		default:

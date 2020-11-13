@@ -15,6 +15,8 @@ const handler = (state = initialState, action) => {
 					(e) => e.id !== action.value
 				),
 			};
+		case ACTIONS.LOAD_STORED_DATA:
+			return { ...state, ...action.data.notifications };
 		case ACTIONS.CLEAR:
 			return initialState;
 		default:

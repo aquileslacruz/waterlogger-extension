@@ -17,6 +17,8 @@ const handler = (state = initialState, action) => {
 			return { ...state, page: action.value };
 		case ACTIONS.SET_MESSAGE:
 			return { ...state, message: action.value };
+		case ACTIONS.LOAD_STORED_DATA:
+			return { ...state, ...action.data.app };
 		case ACTIONS.CLEAR:
 			return initialState;
 		default:
