@@ -10,4 +10,21 @@
 	background-color: white;
 	margin-top: $header-size;
 	margin-bottom: $footer-size;
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+
+		.big-button {
+			padding: 36px;
+			border: 1px solid lightgray;
+			border-radius: 50%;
+			box-shadow: 4px 4px 4px 0px #91aece;
+			cursor: pointer;
+		}
+	}
 }

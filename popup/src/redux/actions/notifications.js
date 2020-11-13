@@ -1,7 +1,8 @@
 import axios from "axios";
 
 import { handleUnauthorized } from "./app";
-import { ACTIONS, ROUTES } from "../constants/notifications";
+import { ACTIONS } from "../constants/notifications";
+import { ROUTES } from "../constants/app";
 
 const set_notifications = (data) => ({
 	type: ACTIONS.SET_NOTIFICATIONS,

@@ -3,6 +3,7 @@ import { InputField } from "..";
 
 const Register = ({ fields, onLoginClick, onSubmit }) => (
 	<div id={"register-page"}>
+		<img src='/logo192.png' alt='logo' className='logo' />
 		<Form className='register-form' onFinish={onSubmit}>
 			<InputField {...fields.username} />
 			<InputField {...fields.firstName} />

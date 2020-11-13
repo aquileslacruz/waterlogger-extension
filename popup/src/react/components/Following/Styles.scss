@@ -1,0 +1,56 @@
+@use "../../variables.scss" as *;
+
+#following-page {
+	display: block;
+	position: absolute;
+	top: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 600px;
+	background-color: white;
+	margin-top: $header-size;
+	margin-bottom: $footer-size;
+
+	.results-list {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+        padding-top: 24px;
+
+        .item {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            padding: 12px 24px;
+            background-color: #e6f7ff;
+            border: 1px solid $base-color;
+            border-radius: 6px;
+            margin: 6px 0;
+    
+            img {
+                height: 32px;
+                border-radius: 50%;
+                margin-right: 24px;
+            }
+    
+            .right {
+                margin-left: auto;
+    
+                .add-icon {
+                    color: $success-color;
+                    font-size: 24px;
+                    cursor: pointer;
+                }
+    
+                .remove-icon {
+                    color: $danger-color;
+                    font-size: 24px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

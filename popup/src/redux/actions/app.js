@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ACTIONS, ROUTES, PAGES } from "../constants/app";
-import { getFollowers, clearFollowing } from "./following";
+import { getFollowing, getFollowers, clearFollowing } from "./following";
 import { clearSearch } from "./search";
 import { clearNotifications } from "./notifications";
 
@@ -22,7 +22,7 @@ const set_page = (page) => ({
 
 const set_message = (message) => ({
 	type: ACTIONS.SET_MESSAGE,
-	value: message,
+	value: message
 });
 
 const clear = () => ({
@@ -69,6 +69,7 @@ export const getUser = (token) => (dispatch) =>
 		.then((response) => response.data)
 		.then((data) => {
 			dispatch(set_user(data));
+			dispatch(getFollowing(token));
 			dispatch(getFollowers(token));
 			dispatch(changePage(PAGES.HOME));
 		})

@@ -1,6 +1,7 @@
 import axios from "axios";
 
-import { ACTIONS, ROUTES } from "../constants/search";
+import { ACTIONS } from "../constants/search";
+import { ROUTES } from "../constants/app";
 import { handleUnauthorized } from "./app";
 
 const set_search_results = (results) => ({

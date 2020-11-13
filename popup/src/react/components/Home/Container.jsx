@@ -1,7 +1,33 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { drankWater } from "../../../redux/actions/home";
 import { Home } from ".";
 
 const Container = () => {
-	return <Home />;
+	const dispatch = useDispatch();
+
+	const token = useSelector((state) => state.app.token);
+
+	const [isShowing, setIsShowing] = useState(false);
+
+	const showModal = () => setIsShowing(true);
+	const hideModal = () => setIsShowing(false);
+
+	const onSubmit = (e) => {
+		dispatch(drankWater(token, e.target.value));
+		hideModal();
+	};
+
+	return (
+		<Home
+			{...{
+				isShowing,
+				showModal,
+				hideModal,
+				onSubmit,
+			}}
+		/>
+	);
 };
 
 export default Container;

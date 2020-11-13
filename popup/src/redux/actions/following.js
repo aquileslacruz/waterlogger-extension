@@ -1,4 +1,6 @@
-import { ACTIONS, ROUTES } from "../constants/following";
+import axios from "axios";
+import { ACTIONS } from "../constants/following";
+import { ROUTES } from "../constants/app";
 import { handleUnauthorized } from "./app";
 
 const set_following = (users) => ({
@@ -15,9 +17,18 @@ const clear = () => ({
 	type: ACTIONS.CLEAR,
 });
 
+export const getFollowing = (token) => (dispatch) =>
+	axios
+		.get(ROUTES.FOLLOWING, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+		.then((response) => response.data)
+		.then((data) => dispatch(set_following(data)))
+		.catch((error) => dispatch(handleUnauthorized(error)));
+
 export const getFollowers = (token) => (dispatch) =>
 	axios
-		.get(ROUTES.MY_FOLLOWERS, {
+		.get(ROUTES.FOLLOWERS, {
 			headers: { Authorization: `Bearer ${token}` },
 		})
 		.then((response) => response.data)
@@ -31,17 +42,17 @@ export const followUser = (token, id) => (dispatch) =>
 			{},
 			{ headers: { Authorization: `Bearer ${token}` } }
 		)
-		.then(() => dispatch(getFollowers(token)))
+		.then(() => dispatch(getFollowing(token)))
 		.catch((error) => dispatch(handleUnauthorized(error)));
 
 export const unfollowUser = (token, id) => (dispatch) =>
 	axios
 		.post(
-			ROUTES.UNFOLLOW,
+			ROUTES.UNFOLLOW(id),
 			{},
 			{ headers: { Authorization: `Bearer ${token}` } }
 		)
-		.then(() => dispatch(getFollowers(token)))
+		.then(() => dispatch(getFollowing(token)))
 		.catch((error) => dispatch(handleUnauthorized(error)));
 
 export const clearFollowing = () => (dispatch) => dispatch(clear());

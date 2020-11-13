@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { Input } from "antd";
-import { PlusCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
+import { UserResult } from "..";
 import { useSelector } from "react-redux";
 
 import "./Styles.scss";
@@ -35,7 +35,7 @@ const Search = ({
 			</div>
 			<div className='results-list'>
 				{results.map((e) => (
-					<ResultItem {...e} />
+					<UserResult {...e} {...{ onFollow, onUnfollow }} />
 				))}
 			</div>
 		</div>
@@ -47,37 +47,5 @@ const BarResultItem = ({ id, username, onClick }) => (
 		{username}
 	</div>
 );
-
-const ResultItem = ({
-	id,
-	username,
-	image = "/profile.png",
-	onFollow,
-	onUnfollow,
-}) => (
-	<div className='item'>
-		<img src={image} className='image' />
-		<span>{username}</span>
-		<div className='right'>
-			<FollowButton {...{ id, onFollow, onUnfollow }} />
-		</div>
-	</div>
-);
-
-const FollowButton = ({ id, onFollow, onUnfollow }) => {
-	const user = useSelector((state) => state.app.user);
-	const following = _.get(user, "following", [])
-		.map((e) => e.id)
-		.includes(id);
-
-	return following ? (
-		<MinusCircleOutlined
-			className='remove-icon'
-			onClick={() => onUnfollow(id)}
-		/>
-	) : (
-		<PlusCircleOutlined className='add-icon' onClick={() => onFollow(id)} />
-	);
-};
 
 export default Search;
