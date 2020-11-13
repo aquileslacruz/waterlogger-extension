@@ -18,16 +18,22 @@ export const ACTIONS = {
 export const API_URL = "http://127.0.0.1:8000";
 
 export const ROUTES = {
-	CREATE: `${API_URL}/users/`,
 	LOGIN: `${API_URL}/token/`,
+	REGISTER: `${API_URL}/users/`,
+
 	ME: `${API_URL}/users/me`,
+	FOLLOWING: `${API_URL}/users/follow/`,
+	FOLLOWERS: `${API_URL}/users/followers/`,
+
 	DRINK_WATER: `${API_URL}/drinks/`,
-	FOLLOWING: `${API_URL}/users/follow`,
-	FOLLOWERS: `${API_URL}/users/followers`,
-	FOLLOW: (id) => `${API_URL}/users/${id}/follow`,
-	UNFOLLOW: (id) => `${API_URL}/users/${id}/unfollow`,
+	TODAYS_DRINKS: `${API_URL}/drinks/today/`,
+
+	FOLLOW: (id) => `${API_URL}/users/${id}/follow/`,
+	UNFOLLOW: (id) => `${API_URL}/users/${id}/unfollow/`,
+
 	GET_NOTIFICATIONS: `${API_URL}/notifications/`,
 	DEL_NOTIFICATION: (id) => `${API_URL}/notifications/${id}/`,
-	SEARCH_USERS: `${API_URL}/users/search`,
-	GET_USER: (id) => `${API_URL}/users/${id}`,
+
+	GET_USER: (id) => `${API_URL}/users/${id}/`,
+	SEARCH_USERS: `${API_URL}/users/search/`,
 };

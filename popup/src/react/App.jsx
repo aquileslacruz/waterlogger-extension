@@ -30,7 +30,7 @@ const App = () => {
 	useEffect(() => {
 		const timer = setInterval(getInfo, 60 * 1000);
 		return () => clearInterval(timer);
-	}, []);
+	}, [token]);
 
 	return (
 		<>

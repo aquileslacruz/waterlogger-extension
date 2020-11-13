@@ -28,14 +28,14 @@ const Search = ({
 				{barResults.length > 0 && (
 					<div className='results'>
 						{barResults.map((e) => (
-							<BarResultItem {...e} onClick={onClickBarResult} />
+							<BarResultItem key={e.id} {...e} onClick={onClickBarResult} />
 						))}
 					</div>
 				)}
 			</div>
 			<div className='results-list'>
 				{results.map((e) => (
-					<UserResult {...e} {...{ onFollow, onUnfollow }} />
+					<UserResult key={e.id} {...e} {...{ onFollow, onUnfollow }} />
 				))}
 			</div>
 		</div>
@@ -43,7 +43,7 @@ const Search = ({
 };
 
 const BarResultItem = ({ id, username, onClick }) => (
-	<div className='item' key={id} onClick={() => onClick(id)}>
+	<div className='item' onClick={() => onClick(id)}>
 		{username}
 	</div>
 );

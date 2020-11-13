@@ -12,7 +12,7 @@ const Notifications = ({ onRemove }) => {
 			{notifications.length > 0 && (
 				<div className='notification-list'>
 					{notifications.map((elem) => (
-						<Notification {...elem} onRemove={onRemove} />
+						<Notification key={elem.id} {...elem} onRemove={onRemove} />
 					))}
 				</div>
 			)}
@@ -27,10 +27,12 @@ const Notifications = ({ onRemove }) => {
 };
 
 const Notification = ({ id, user, glasses, datetime, onRemove }) => (
-	<div className='notification' key={id}>
+	<div className='notification'>
 		<div className='info'>
 			<div className='user'>{user}</div>
-			<div className='message'>{`Drank ${glasses} glasses of water`}</div>
+			<div className='message'>{`Drank ${glasses} ${
+				glasses > 1 ? "glasses" : "glass"
+			} of water`}</div>
 		</div>
 		<div className='time'>{formatDate(datetime)}</div>
 		<div className='btn-remove' onClick={() => onRemove(id)}>

@@ -8,7 +8,7 @@ const UserResult = ({
 	onFollow,
 	onUnfollow,
 }) => (
-	<div className='item' key={id}>
+	<div className='item'>
 		<img src={image} className='image' alt={username} />
 		<span>{username}</span>
 		<div className='right'>

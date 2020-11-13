@@ -3,6 +3,7 @@ import { ACTIONS, ROUTES, PAGES } from "../constants/app";
 import { getFollowing, getFollowers, clearFollowing } from "./following";
 import { clearSearch } from "./search";
 import { clearNotifications, getNotifications } from "./notifications";
+import { getTodaysDrinks } from "./home";
 
 // ACTIONS
 const set_token = (token) => ({
@@ -22,7 +23,7 @@ const set_page = (page) => ({
 
 const set_message = (message) => ({
 	type: ACTIONS.SET_MESSAGE,
-	value: message
+	value: message,
 });
 
 const clear = () => ({
@@ -40,10 +41,10 @@ export const login = (username, password) => (dispatch) =>
 		});
 
 export const logout = () => (dispatch) => {
-    dispatch(clearApp());
-    dispatch(clearSearch());
-    dispatch(clearFollowing());
-    dispatch(clearNotifications());
+	dispatch(clearApp());
+	dispatch(clearSearch());
+	dispatch(clearFollowing());
+	dispatch(clearNotifications());
 };
 
 export const reload = (token) => (dispatch) =>
@@ -57,7 +58,7 @@ export const register = (username, password, first_name, last_name) => (
 	dispatch
 ) =>
 	axios
-		.post(ROUTES.CREATE, { username, password, first_name, last_name })
+		.post(ROUTES.REGISTER, { username, password, first_name, last_name })
 		.then((response) => response.data)
 		.then(() => {
 			dispatch(login(username, password));
@@ -71,6 +72,8 @@ export const getUser = (token) => (dispatch) =>
 			dispatch(set_user(data));
 			dispatch(getFollowing(token));
 			dispatch(getFollowers(token));
+			dispatch(getTodaysDrinks(token));
+			dispatch(getNotifications(token));
 			dispatch(changePage(PAGES.HOME));
 		})
 		.catch((error) => dispatch(handleUnauthorized(error)));
@@ -79,6 +82,7 @@ export const getUserInfo = (token) => (dispatch) => {
 	dispatch(getFollowers(token));
 	dispatch(getFollowing(token));
 	dispatch(getNotifications(token));
+	dispatch(getTodaysDrinks(token));
 };
 
 export const handleUnauthorized = (error) => (dispatch) => {
