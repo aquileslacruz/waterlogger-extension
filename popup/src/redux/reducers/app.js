@@ -1,3 +1,5 @@
+/*global chrome*/
+
 import { PAGES, ACTIONS } from "../constants/app";
 
 const initialState = {
@@ -8,22 +10,37 @@ const initialState = {
 };
 
 const handler = (state = initialState, action) => {
+	let result;
 	switch (action.type) {
 		case ACTIONS.SET_TOKEN:
-			return { ...state, token: action.value };
+			result = { ...state, token: action.value };
+			chrome.storage.local.set({'app': result}, doNothing);
+			return result;
 		case ACTIONS.SET_USER:
-			return { ...state, user: action.value };
+			result = { ...state, user: action.value };
+			chrome.storage.local.set({'app': result}, doNothing);
+			return result;
 		case ACTIONS.SET_PAGE:
-			return { ...state, page: action.value };
+			result = { ...state, page: action.value };
+			chrome.storage.local.set({'app': result}, doNothing);
+			return result;
 		case ACTIONS.SET_MESSAGE:
-			return { ...state, message: action.value };
+			result = { ...state, message: action.value };
+			chrome.storage.local.set({'app': result}, doNothing);
+			return result;
 		case ACTIONS.LOAD_STORED_DATA:
-			return { ...state, ...action.data.app };
+			result = { ...state, ...action.data.app };
+			chrome.storage.local.set({'app': result}, doNothing);
+			return result;
 		case ACTIONS.CLEAR:
-			return initialState;
+			result = initialState;
+			chrome.storage.local.set({'app': result}, doNothing);
+			return result;
 		default:
 			return { ...state };
 	}
 };
+
+const doNothing = () => {};
 
 export default handler;

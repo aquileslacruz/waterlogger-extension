@@ -1,3 +1,5 @@
+/*global chrome*/
+
 import { ACTIONS } from "../constants/home";
 
 const initialState = {
@@ -6,18 +8,30 @@ const initialState = {
 };
 
 const handler = (state = initialState, action) => {
+    let result;
+
 	switch (action.type) {
 		case ACTIONS.SET_TODAYS_DRINKS:
-			return { ...state, todaysDrinks: action.value };
+            result = { ...state, todaysDrinks: action.value };
+            chrome.storage.local.set({'home': result}, doNothing);
+			return result;
 		case ACTIONS.SET_HIGH_SCORES:
-			return { ...state, highScores: action.value };
+            result = { ...state, highScores: action.value };
+            chrome.storage.local.set({'home': result}, doNothing);
+			return result;
 		case ACTIONS.LOAD_STORED_DATA:
-			return { ...state, ...action.data.home };
+            result = { ...state, ...action.data.home };
+            chrome.storage.local.set({'home': result}, doNothing);
+			return result;
 		case ACTIONS.CLEAR:
-			return initialState;
+            result = initialState;
+            chrome.storage.local.set({'home': result}, doNothing);
+			return result;
 		default:
 			return { ...state };
 	}
 };
+
+const doNothing = () => {};
 
 export default handler;

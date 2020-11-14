@@ -1,3 +1,5 @@
+/*global chrome*/
+
 import { ACTIONS } from "../constants/search";
 
 const initialState = {
@@ -6,18 +8,30 @@ const initialState = {
 };
 
 const handler = (state = initialState, action) => {
+	let result;
+
 	switch (action.type) {
 		case ACTIONS.SET_SEARCH_RESULTS:
-			return { ...state, results: action.value };
+			result = { ...state, results: action.value };
+			chrome.storage.local.set({ search: result }, doNothing);
+			return result;
 		case ACTIONS.SET_SEARCHBAR_RESULTS:
-			return { ...state, barResults: action.value };
+			result = { ...state, barResults: action.value };
+			chrome.storage.local.set({ search: result }, doNothing);
+			return result;
 		case ACTIONS.LOAD_STORED_DATA:
-			return { ...state, ...action.data.search };
+			result = { ...state, ...action.data.search };
+			chrome.storage.local.set({ search: result }, doNothing);
+			return result;
 		case ACTIONS.CLEAR:
-			return initialState;
+			result = initialState;
+			chrome.storage.local.set({ search: result }, doNothing);
+			return result;
 		default:
 			return { ...state };
 	}
 };
+
+const doNothing = () => {};
 
 export default handler;

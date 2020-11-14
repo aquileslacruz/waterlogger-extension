@@ -1,3 +1,5 @@
+/*global chrome*/
+
 import axios from "axios";
 import { ACTIONS, ROUTES, PAGES } from "../constants/app";
 import { getFollowing, getFollowers, clearFollowing } from "./following";
@@ -24,6 +26,11 @@ const set_page = (page) => ({
 const set_message = (message) => ({
 	type: ACTIONS.SET_MESSAGE,
 	value: message,
+});
+
+const load_stored_data = (data) => ({
+	type: ACTIONS.LOAD_STORED_DATA,
+	data,
 });
 
 const clear = () => ({
@@ -101,3 +108,10 @@ export const clearApp = () => (dispatch) => dispatch(clear());
 export const changePage = (page) => (dispatch) => dispatch(set_page(page));
 
 export const setAppMessage = (msg) => (dispatch) => dispatch(set_message(msg));
+
+// CHROME STORAGE SECTION
+export const loadStorageReducers = () => (dispatch) =>
+	chrome.storage.local.get(
+		["app", "home", "search", "following", "notifications"],
+		(result) => dispatch(load_stored_data(result))
+	);

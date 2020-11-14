@@ -1,3 +1,5 @@
+/*global chrome*/
+
 import { ACTIONS } from "../constants/following";
 
 const initialState = {
@@ -6,18 +8,30 @@ const initialState = {
 };
 
 const handler = (state = initialState, action) => {
+	let result;
+
 	switch (action.type) {
 		case ACTIONS.SET_FOLLOWING:
-			return { ...state, following: action.value };
+			result = { ...state, following: action.value };
+			chrome.storage.local.set({ following: result }, doNothing);
+			return result;
 		case ACTIONS.SET_FOLLOWERS:
-			return { ...state, followers: action.value };
+			result = { ...state, followers: action.value };
+			chrome.storage.local.set({ following: result }, doNothing);
+			return result;
 		case ACTIONS.LOAD_STORED_DATA:
-			return { ...state, ...action.data.following };
+			result = { ...state, ...action.data.following };
+			chrome.storage.local.set({ following: result }, doNothing);
+			return result;
 		case ACTIONS.CLEAR:
-			return initialState;
+			result = initialState;
+			chrome.storage.local.set({ following: result }, doNothing);
+			return result;
 		default:
 			return { ...state };
 	}
 };
+
+const doNothing = () => {};
 
 export default handler;

@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Alert } from "antd";
 import { PAGES } from "../redux/constants/app";
-import { getUserInfo } from "../redux/actions/app";
+import { getUserInfo, loadStorageReducers } from "../redux/actions/app";
 import {
 	Login,
 	Register,
@@ -26,6 +26,10 @@ const App = () => {
 	const showHeader = ![PAGES.LOGIN, PAGES.REGISTER].includes(page);
 
 	const getInfo = () => token !== null && dispatch(getUserInfo(token));
+
+	useEffect(() => {
+		dispatch(loadStorageReducers());
+	}, []);
 
 	useEffect(() => {
 		const timer = setInterval(getInfo, 60 * 1000);
