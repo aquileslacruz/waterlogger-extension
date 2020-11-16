@@ -1,7 +1,7 @@
 /*global chrome*/
 
 import axios from "axios";
-import { ACTIONS, ROUTES, PAGES } from "../constants/app";
+import { ACTIONS, ROUTES, PAGES, PANEL_URL } from "../constants/app";
 import { getFollowing, getFollowers, clearFollowing } from "./following";
 import { clearSearch } from "./search";
 import { clearNotifications, getNotifications } from "./notifications";
@@ -115,3 +115,6 @@ export const loadStorageReducers = () => (dispatch) =>
 		["app", "home", "search", "following", "notifications"],
 		(result) => dispatch(load_stored_data(result))
 	);
+
+// CHROME ADMIN SECTION
+export const openAdminPanel = () => window.open(PANEL_URL, "_blank");

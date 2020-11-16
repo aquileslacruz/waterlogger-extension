@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 import "./Styles.scss";
 
 const Home = ({ isShowing, showModal, hideModal, onSubmit }) => {
-	const glassIcon = "/icons/glass-192.png";
+	const glassIcon = `${process.env.PUBLIC_URL}/icons/glass-192.png`;
 	const todaysDrinks = useSelector((state) => state.home.todaysDrinks);
-	const totalToday = sum(todaysDrinks.map(e => e.glasses));
+	const totalToday = sum(todaysDrinks.map((e) => e.glasses));
 
 	return (
 		<div id='home-page'>

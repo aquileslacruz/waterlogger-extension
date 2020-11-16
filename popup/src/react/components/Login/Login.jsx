@@ -5,7 +5,7 @@ import "./Styles.scss";
 
 const Login = ({ fields, onSubmit, onRegisterClick }) => (
 	<div id={"login-page"}>
-		<img src='/logo192.png' alt='logo' className='logo' />
+		<img src={`${process.env.PUBLIC_URL}/logo192.png`} alt='logo' className='logo' />
 		<Form className='login-form' onFinish={onSubmit}>
 			<InputField {...fields.username} />
 			<InputField {...fields.password} />

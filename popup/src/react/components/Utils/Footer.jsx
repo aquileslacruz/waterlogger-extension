@@ -1,12 +1,13 @@
 import { Modal, Button } from "antd";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { logout } from "../../../redux/actions/app";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, openAdminPanel } from "../../../redux/actions/app";
 
 const Footer = () => {
 	const dispatch = useDispatch();
 
 	const [showModal, setShowModal] = useState(false);
+	const user = useSelector((state) => state.app.user);
 
 	const onClickLogout = () => setShowModal(true);
 	const onClickCancel = () => setShowModal(false);
@@ -16,6 +17,11 @@ const Footer = () => {
 	return (
 		<>
 			<div id='AppFooter'>
+				{user.is_admin && (
+					<Button type='link' onClick={openAdminPanel}>
+						{"Admin Panel"}
+					</Button>
+				)}
 				<Button type='link' onClick={onClickLogout}>
 					{"Logout"}
 				</Button>

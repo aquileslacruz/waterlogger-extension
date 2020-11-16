@@ -1,5 +1,6 @@
 /* global chrome */
 
+import _ from "lodash";
 import axios from "axios";
 import { ACTIONS, ROUTES } from "../constants/app";
 
@@ -18,6 +19,11 @@ const set_page = (page) => ({
 	value: page,
 });
 
+const set_admin = (value) => ({
+	type: ACTIONS.SET_ADMIN,
+	value,
+});
+
 export const getUsers = (token, page = 1, limit = 10) => (dispatch) =>
 	axios
 		.get(ROUTES.GET_USERS, {
@@ -25,7 +31,12 @@ export const getUsers = (token, page = 1, limit = 10) => (dispatch) =>
 			params: { page, limit },
 		})
 		.then((response) => response.data)
-		.then((data) => dispatch(set_users(data)));
+		.then((data) => dispatch(set_users(data)))
+		.catch((error) => {
+			if (error.response.status === 401) {
+				dispatch(set_admin(false));
+			}
+		});
 
 export const getToken = (token) => (dispatch) =>
 	axios
@@ -35,6 +46,14 @@ export const getToken = (token) => (dispatch) =>
 		.then((response) => response.data)
 		.then((data) => dispatch(set_token(data.access_token)));
 
+export const getUserInfo = (token) => (dispatch) =>
+	axios
+		.get(ROUTES.ME, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+		.then((response) => response.data)
+		.then((data) => dispatch(set_admin(data.is_admin)));
+
 export const changePage = (token, page) => (dispatch) => {
 	dispatch(set_page(page));
 	dispatch(getToken(token));
@@ -42,6 +61,8 @@ export const changePage = (token, page) => (dispatch) => {
 
 // CHROME STORAGE SECTION
 export const loadUserToken = () => (dispatch) =>
-	chrome.storage.local.get(["app"], (result) =>
-		dispatch(set_token(result.app.token))
-	);
+	chrome.storage.local.get(["app"], (result) => {
+		const token = _.get(result, "app.token", null);
+		dispatch(set_token(token));
+		dispatch(getUserInfo(token));
+	});

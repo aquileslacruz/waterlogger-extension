@@ -17,6 +17,7 @@ export const ACTIONS = {
 };
 
 export const API_URL = "http://127.0.0.1:8000";
+export const PANEL_URL = "../admin/index.html"
 
 export const ROUTES = {
 	LOGIN: `${API_URL}/token/`,

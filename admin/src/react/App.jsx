@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { changePage } from "../redux/actions/app";
+import { useEffect } from "react";
+import { changePage, loadUserToken } from "../redux/actions/app";
 import { PAGES } from "../redux/constants/app";
 import { Users } from "./components";
 import "antd/dist/antd.css";
@@ -9,11 +10,25 @@ const App = () => {
 	const dispatch = useDispatch();
 
 	const page = useSelector((state) => state.app.page);
+	const admin = useSelector((state) => state.app.admin);
 	const token = useSelector((state) => state.app.token);
 
 	const goToPage = (page) => dispatch(changePage(token, page));
 
-	return <div id='app-container'>{page === PAGES.USERS && <Users />}</div>;
+	useEffect(() => {
+		dispatch(loadUserToken());
+	}, []);
+
+	return (
+		<div id='app-container'>
+			{admin && page === PAGES.USERS && <Users />}
+			{!admin && <NoAdmin />}
+		</div>
+	);
 };
+
+const NoAdmin = () => (
+	<div className='no-admin'>{"You must be an admin to view this page"}</div>
+);
 
 export default App;
