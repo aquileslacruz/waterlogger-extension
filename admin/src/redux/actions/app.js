@@ -66,3 +66,7 @@ export const loadUserToken = () => (dispatch) =>
 		dispatch(set_token(token));
 		dispatch(getUserInfo(token));
 	});
+
+export const clearData = () => {
+	chrome.storage.local.clear(window.close);
+}

@@ -1,0 +1,35 @@
+@use "../../../variables.scss" as *;
+
+#side-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: $side-width;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: $base-color;
+    color: white;
+
+    .section {
+        cursor: pointer;
+        width: 100%;
+        height: $side-width;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+
+        &.selected {
+            color: $base-color;
+            background-color: white;
+        }
+
+        &.logout {
+            margin-top: auto;
+            padding-bottom: 12px;
+        }
+    }
+}

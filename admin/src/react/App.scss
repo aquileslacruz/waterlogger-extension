@@ -1,8 +1,13 @@
+@use "./variables.scss" as *;
+
 #app-container, #root {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+}
+
+#app-container {
+    padding-left: $side-width;
 }

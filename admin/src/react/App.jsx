@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { changePage, loadUserToken } from "../redux/actions/app";
 import { PAGES } from "../redux/constants/app";
-import { Users } from "./components";
+import { Users, Menu } from "./components";
 import "antd/dist/antd.css";
 import "./App.scss";
 
@@ -21,7 +21,14 @@ const App = () => {
 
 	return (
 		<div id='app-container'>
-			{admin && page === PAGES.USERS && <Users />}
+			{
+				admin && (
+					<>
+					<Menu />
+					{page === PAGES.USERS && <Users />}
+					</>
+				)
+			}
 			{!admin && <NoAdmin />}
 		</div>
 	);

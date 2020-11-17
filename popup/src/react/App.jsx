@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Alert } from "antd";
 import { PAGES } from "../redux/constants/app";
-import { getUserInfo, loadStorageReducers } from "../redux/actions/app";
+import { getUserInfo, loadStorageReducers, setAppMessage } from "../redux/actions/app";
 import {
 	Login,
 	Register,
@@ -26,6 +26,7 @@ const App = () => {
 	const showHeader = ![PAGES.LOGIN, PAGES.REGISTER].includes(page);
 
 	const getInfo = () => token !== null && dispatch(getUserInfo(token));
+	const clearMessage = () => dispatch(setAppMessage(null));
 
 	useEffect(() => {
 		dispatch(loadStorageReducers());
@@ -55,6 +56,8 @@ const App = () => {
 					className='GlobalAlert'
 					type={message.type}
 					message={message.message}
+					closable
+					onClose={clearMessage}
 				/>
 			)}
 		</>

@@ -1,3 +1,5 @@
+@use "../../variables.scss" as *;
+
 #users-page {
     display: flex;
     flex-direction: column;
@@ -5,4 +7,11 @@
     align-items: center;
     height: 100%;
     width: 100%;
+    overflow-y: auto;
+
+    .title {
+        color: $base-color;
+        font-size: 32px;
+        padding: 24px;
+    }
 }

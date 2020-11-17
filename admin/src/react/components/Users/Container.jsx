@@ -11,6 +11,7 @@ const UsersContainer = () => {
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => setLoading(false), [users]);
+	useEffect(() => { dispatch(getUsers(token)); }, []);
 
 	const onChangeTable = (pagination, filters, sorter, extra) => {
 		setLoading(true);

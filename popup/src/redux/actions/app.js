@@ -1,6 +1,7 @@
 /*global chrome*/
 
 import axios from "axios";
+import _ from "lodash";
 import { ACTIONS, ROUTES, PAGES, PANEL_URL } from "../constants/app";
 import { getFollowing, getFollowers, clearFollowing } from "./following";
 import { clearSearch } from "./search";
@@ -45,6 +46,15 @@ export const login = (username, password) => (dispatch) =>
 		.then((data) => {
 			dispatch(set_token(data.access_token));
 			return dispatch(getUser(data.access_token));
+		})
+		.catch(() => {
+			dispatch(
+				setAppMessage({
+					type: "error",
+					message: "Invalid username/password",
+				})
+			)
+			setTimeout(() => dispatch(setAppMessage(null)), 5*1000);
 		});
 
 export const logout = () => (dispatch) => {
@@ -113,7 +123,11 @@ export const setAppMessage = (msg) => (dispatch) => dispatch(set_message(msg));
 export const loadStorageReducers = () => (dispatch) =>
 	chrome.storage.local.get(
 		["app", "home", "search", "following", "notifications"],
-		(result) => dispatch(load_stored_data(result))
+		(result) => {
+			dispatch(load_stored_data(result));
+			const token = _.get(result, "app.token", null);
+			return token && dispatch(reload(token));
+		}
 	);
 
 // CHROME ADMIN SECTION

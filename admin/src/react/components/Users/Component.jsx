@@ -22,18 +22,21 @@ const Users = ({ users, loading, onChangeTable }) => {
 
 	return (
 		<div id='users-page'>
-			<Table
-				columns={columns}
-				rowKey={(record) => record.id}
-				dataSource={users.results}
-				pagination={{
-					current: users.page,
-					pageSize: users.per_page,
-					total: users.total_count,
-				}}
-				loading={loading}
-				onChange={onChangeTable}
-			/>
+			<div className='title'>{"Users"}</div>
+			<div className='result-table'>
+				<Table
+					columns={columns}
+					rowKey={(record) => record.id}
+					dataSource={users.results}
+					pagination={{
+						current: users.page,
+						pageSize: users.per_page,
+						total: users.total_count,
+					}}
+					loading={loading}
+					onChange={onChangeTable}
+				/>
+			</div>
 		</div>
 	);
 };
