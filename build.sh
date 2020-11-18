@@ -8,3 +8,4 @@ mkdir build
 cp -r popup/build build/popup
 cp -r admin/build build/admin
 cp manifest.json build/manifest.json
+cp background.js build/background.js

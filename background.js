@@ -1,0 +1,40 @@
+const API_URL = "http://127.0.0.1:8000";
+const ROUTES = {
+	NOTIFICATIONS: `${API_URL}/notifications/`,
+};
+
+let interval;
+
+const getNotifications = (token) => {
+	fetch(ROUTES.NOTIFICATIONS, {
+		method: "GET",
+		headers: { Authorization: `Bearer ${token}` },
+	})
+		.then((response) => response.json())
+		.then((json) => {
+			chrome.storage.local.get(["notifications"], (results) => {
+				const notifications = results.notifications;
+				chrome.storage.local.set({
+					notifications: { ...notifications, notifications: json },
+				});
+				if (json.length > 0) {
+					chrome.browserAction.setBadgeText({ text: `${json.length}` });
+				}
+			});
+		});
+};
+
+const reloadNotifications = () => {
+	console.log("Loading Notifications...");
+	chrome.storage.local.get(["app"], (results) => {
+		const token = results.app ? results.app.token : null;
+		if (token) {
+			getNotifications(token);
+		}
+	});
+};
+
+interval = setInterval(reloadNotifications, 60 * 1000);
+reloadNotifications();
+
+chrome.runtime.onSuspend.addListener(() => clearInterval(interval));
