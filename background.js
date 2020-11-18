@@ -17,9 +17,9 @@ const getNotifications = (token) => {
 				chrome.storage.local.set({
 					notifications: { ...notifications, notifications: json },
 				});
-				if (json.length > 0) {
-					chrome.browserAction.setBadgeText({ text: `${json.length}` });
-				}
+				chrome.browserAction.setBadgeText({
+					text: `${json.length > 0 ? json.length : ""}`,
+				});
 			});
 		});
 };
