@@ -13,19 +13,19 @@ const handler = (state = initialState, action) => {
 	switch (action.type) {
 		case ACTIONS.SET_SEARCH_RESULTS:
 			result = { ...state, results: action.value };
-			chrome.storage.local.set({ search: result }, doNothing);
+			chrome.storage && chrome.storage.local.set({ search: result }, doNothing);
 			return result;
 		case ACTIONS.SET_SEARCHBAR_RESULTS:
 			result = { ...state, barResults: action.value };
-			chrome.storage.local.set({ search: result }, doNothing);
+			chrome.storage && chrome.storage.local.set({ search: result }, doNothing);
 			return result;
 		case ACTIONS.LOAD_STORED_DATA:
 			result = { ...state, ...action.data.search };
-			chrome.storage.local.set({ search: result }, doNothing);
+			chrome.storage && chrome.storage.local.set({ search: result }, doNothing);
 			return result;
 		case ACTIONS.CLEAR:
 			result = initialState;
-			chrome.storage.local.set({ search: result }, doNothing);
+			chrome.storage && chrome.storage.local.set({ search: result }, doNothing);
 			return result;
 		default:
 			return { ...state };

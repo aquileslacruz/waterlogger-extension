@@ -121,7 +121,7 @@ export const setAppMessage = (msg) => (dispatch) => dispatch(set_message(msg));
 
 // CHROME STORAGE SECTION
 export const loadStorageReducers = () => (dispatch) =>
-	chrome.storage.local.get(
+	chrome.storage && chrome.storage.local.get(
 		["app", "home", "search", "following", "notifications"],
 		(result) => {
 			dispatch(load_stored_data(result));
@@ -131,4 +131,4 @@ export const loadStorageReducers = () => (dispatch) =>
 	);
 
 // CHROME ADMIN SECTION
-export const openAdminPanel = () => window.open(PANEL_URL, "_blank");
+export const openAdminPanel = () => chrome.storage && window.open(PANEL_URL, "_blank");

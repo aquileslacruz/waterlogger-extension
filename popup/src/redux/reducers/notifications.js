@@ -12,7 +12,7 @@ const handler = (state = initialState, action) => {
 	switch (action.type) {
 		case ACTIONS.SET_NOTIFICATIONS:
 			result = { ...state, notifications: action.value };
-			chrome.storage.local.set({'notifications': result}, doNothing);
+			chrome.storage && chrome.storage.local.set({'notifications': result}, doNothing);
 			return result;
 		case ACTIONS.DEL_NOTIFICATION:
 			result = {
@@ -21,15 +21,15 @@ const handler = (state = initialState, action) => {
 					(e) => e.id !== action.value
 				),
 			};
-			chrome.storage.local.set({'notifications': result}, doNothing);
+			chrome.storage && chrome.storage.local.set({'notifications': result}, doNothing);
 			return result;
 		case ACTIONS.LOAD_STORED_DATA:
 			result = { ...state, ...action.data.notifications };
-			chrome.storage.local.set({'notifications': result}, doNothing);
+			chrome.storage && chrome.storage.local.set({'notifications': result}, doNothing);
 			return result;
 		case ACTIONS.CLEAR:
 			result = initialState;
-			chrome.storage.local.set({'notifications': result}, doNothing);
+			chrome.storage && chrome.storage.local.set({'notifications': result}, doNothing);
 			return result;
 		default:
 			return { ...state };

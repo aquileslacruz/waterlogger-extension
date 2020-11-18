@@ -22,14 +22,14 @@ const App = () => {
 	return (
 		<div id='app-container'>
 			{
-				admin && (
+				!admin && (
 					<>
 					<Menu />
 					{page === PAGES.USERS && <Users />}
 					</>
 				)
 			}
-			{!admin && <NoAdmin />}
+			{admin && <NoAdmin />}
 		</div>
 	);
 };

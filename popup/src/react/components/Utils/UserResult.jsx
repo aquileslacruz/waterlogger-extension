@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const UserResult = ({
 	id,
 	username,
-	image = "/profile.png",
+	image = `${process.env.PUBLIC_URL}/profile.png`,
 	onFollow,
 	onUnfollow,
 }) => (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { drankWater } from "../../../redux/actions/home";
 import { Home } from ".";
@@ -9,6 +9,7 @@ const Container = () => {
 	const token = useSelector((state) => state.app.token);
 
 	const [isShowing, setIsShowing] = useState(false);
+	const [time, setTime] = useState(new Date());
 
 	const showModal = () => setIsShowing(true);
 	const hideModal = () => setIsShowing(false);
@@ -18,9 +19,15 @@ const Container = () => {
 		hideModal();
 	};
 
+	useEffect(() => {
+		const interval = setInterval(() => setTime(new Date()), 1000);
+		return () => clearInterval(interval);
+	}, []);
+
 	return (
 		<Home
 			{...{
+				time,
 				isShowing,
 				showModal,
 				hideModal,

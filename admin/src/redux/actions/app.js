@@ -38,6 +38,22 @@ export const getUsers = (token, page = 1, limit = 10) => (dispatch) =>
 			}
 		});
 
+export const updateUser = (token, id, isAdmin) => (dispatch) =>
+	axios
+		.put(
+			ROUTES.USER(id),
+			{ is_admin: isAdmin },
+			{ headers: { Authorization: `Bearer ${token}` } }
+		)
+		.then(() => dispatch(getUsers(token)));
+
+export const deleteUser = (token, id) => (dispatch) =>
+	axios
+		.delete(ROUTES.USER(id), {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+		.then(() => dispatch(getUsers(token)));
+
 export const getToken = (token) => (dispatch) =>
 	axios
 		.get(ROUTES.GET_TOKEN, {
@@ -61,6 +77,7 @@ export const changePage = (token, page) => (dispatch) => {
 
 // CHROME STORAGE SECTION
 export const loadUserToken = () => (dispatch) =>
+	chrome.storage &&
 	chrome.storage.local.get(["app"], (result) => {
 		const token = _.get(result, "app.token", null);
 		dispatch(set_token(token));
@@ -68,5 +85,5 @@ export const loadUserToken = () => (dispatch) =>
 	});
 
 export const clearData = () => {
-	chrome.storage.local.clear(window.close);
-}
+	chrome.storage && chrome.storage.local.clear(window.close);
+};

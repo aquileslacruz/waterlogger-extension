@@ -15,17 +15,27 @@
 		height: 60px;
 		display: flex;
 		align-items: center;
-		justify-content: flex-end;
-		padding-right: 16px;
+		justify-content: space-between;
+		padding: 0 16px;
 
-		.header-button {
-			height: 48px;
+		.time {
+			font-size: 18px;
 		}
 
-		.counter {
-			font-size: 48px;
-			color: $font-blue;
-			padding-left: 8px;
+		.today {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			.header-button {
+				height: 48px;
+			}
+
+			.counter {
+				font-size: 48px;
+				color: $font-blue;
+				padding-left: 8px;
+			}
 		}
 	}
 

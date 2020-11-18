@@ -13,19 +13,19 @@ const handler = (state = initialState, action) => {
 	switch (action.type) {
 		case ACTIONS.SET_FOLLOWING:
 			result = { ...state, following: action.value };
-			chrome.storage.local.set({ following: result }, doNothing);
+			chrome.storage && chrome.storage.local.set({ following: result }, doNothing);
 			return result;
 		case ACTIONS.SET_FOLLOWERS:
 			result = { ...state, followers: action.value };
-			chrome.storage.local.set({ following: result }, doNothing);
+			chrome.storage && chrome.storage.local.set({ following: result }, doNothing);
 			return result;
 		case ACTIONS.LOAD_STORED_DATA:
 			result = { ...state, ...action.data.following };
-			chrome.storage.local.set({ following: result }, doNothing);
+			chrome.storage && chrome.storage.local.set({ following: result }, doNothing);
 			return result;
 		case ACTIONS.CLEAR:
 			result = initialState;
-			chrome.storage.local.set({ following: result }, doNothing);
+			chrome.storage && chrome.storage.local.set({ following: result }, doNothing);
 			return result;
 		default:
 			return { ...state };

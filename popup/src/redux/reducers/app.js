@@ -14,27 +14,27 @@ const handler = (state = initialState, action) => {
 	switch (action.type) {
 		case ACTIONS.SET_TOKEN:
 			result = { ...state, token: action.value };
-			chrome.storage.local.set({'app': result}, doNothing);
+			chrome.storage && chrome.storage.local.set({'app': result}, doNothing);
 			return result;
 		case ACTIONS.SET_USER:
 			result = { ...state, user: action.value };
-			chrome.storage.local.set({'app': result}, doNothing);
+			chrome.storage && chrome.storage.local.set({'app': result}, doNothing);
 			return result;
 		case ACTIONS.SET_PAGE:
 			result = { ...state, page: action.value };
-			chrome.storage.local.set({'app': result}, doNothing);
+			chrome.storage && chrome.storage.local.set({'app': result}, doNothing);
 			return result;
 		case ACTIONS.SET_MESSAGE:
 			result = { ...state, message: action.value };
-			chrome.storage.local.set({'app': result}, doNothing);
+			chrome.storage && chrome.storage.local.set({'app': result}, doNothing);
 			return result;
 		case ACTIONS.LOAD_STORED_DATA:
 			result = { ...state, ...action.data.app };
-			chrome.storage.local.set({'app': result}, doNothing);
+			chrome.storage && chrome.storage.local.set({'app': result}, doNothing);
 			return result;
 		case ACTIONS.CLEAR:
 			result = initialState;
-			chrome.storage.local.set({'app': result}, doNothing);
+			chrome.storage && chrome.storage.local.set({'app': result}, doNothing);
 			return result;
 		default:
 			return { ...state };

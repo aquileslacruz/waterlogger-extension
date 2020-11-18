@@ -28,13 +28,16 @@ const Notifications = ({ onRemove }) => {
 
 const Notification = ({ id, user, glasses, datetime, onRemove }) => (
 	<div className='notification'>
-		<div className='info'>
-			<div className='user'>{user}</div>
-			<div className='message'>{`Drank ${glasses} ${
-				glasses > 1 ? "glasses" : "glass"
-			} of water`}</div>
+		<div className='name'>
+			<span>{user}</span>
 		</div>
-		<div className='time'>{formatDate(datetime)}</div>
+		<div className='info'>
+			<div className='water'>
+				<img src={`${process.env.PUBLIC_URL}/icons/glass-192.png`} alt='glass' />
+				<span>{`x ${glasses}`}</span>
+			</div>
+			<div className='time'>{formatDate(datetime)}</div>
+		</div>
 		<div className='btn-remove' onClick={() => onRemove(id)}>
 			x
 		</div>

@@ -11,6 +11,7 @@ export const ROUTES = {
 	GET_TOKEN: `${API_URL}/token/`,
 	GET_USERS: `${API_URL}/users/`,
 	ME: `${API_URL}/users/me`,
+	USER: (id) => `${API_URL}/users/${id}/`
 };
 
 export const PAGES = {
