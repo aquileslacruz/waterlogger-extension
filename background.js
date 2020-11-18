@@ -17,9 +17,7 @@ const getNotifications = (token) => {
 				chrome.storage.local.set({
 					notifications: { ...notifications, notifications: json },
 				});
-				chrome.browserAction.setBadgeText({
-					text: `${json.length > 0 ? json.length : ""}`,
-				});
+				changeBadgeText(json);
 			});
 		});
 };
@@ -34,7 +32,17 @@ const reloadNotifications = () => {
 	});
 };
 
+const changeBadgeText = (notifications) =>
+	chrome.browserAction.setBadgeText({
+		text: `${notifications.length > 0 ? notifications.length : ""}`,
+	});
+
 interval = setInterval(reloadNotifications, 60 * 1000);
 reloadNotifications();
 
 chrome.runtime.onSuspend.addListener(() => clearInterval(interval));
+chrome.storage.onChanged.addListener((changes, namespace) => {
+	if (changes.notifications) {
+		changeBadgeText(changes.notifications.newValue.notifications);
+	}
+});
