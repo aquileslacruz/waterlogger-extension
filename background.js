@@ -43,6 +43,10 @@ reloadNotifications();
 chrome.runtime.onSuspend.addListener(() => clearInterval(interval));
 chrome.storage.onChanged.addListener((changes, namespace) => {
 	if (changes.notifications) {
-		changeBadgeText(changes.notifications.newValue.notifications);
+		if (changes.notifications.newValue) {
+			changeBadgeText(changes.notifications.newValue.notifications);
+		} else {
+			changeBadgeText([]);
+		}
 	}
 });
